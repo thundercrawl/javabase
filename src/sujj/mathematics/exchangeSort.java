@@ -12,6 +12,11 @@ public class exchangeSort {
 		innerArray.set(b, tmp);
 		
 	}
+	public static void print(Object obj)
+	{
+		
+		System.out.println(obj);
+	}
 	public static void printArray()
 	{
 		System.out.println(innerArray.toString());
@@ -98,14 +103,59 @@ public class exchangeSort {
 		innerArray = insertArray;
 		System.out.println("insert sort,Time consumed milliseconds:"+(System.currentTimeMillis()-startTime));
 	}
+	private static void merge(ArrayList<Integer>a,int low,int hi)
+	{
+		print(low+" "+hi);
+		ArrayList<Integer>aux = new ArrayList<Integer>();
+		printArray();
+		int mid=(low+hi)/2;
+		for(int i=low,j=(low+hi)/2+1,index=0;index<(hi-low)+1;index++)
+		{
+			if(i<mid&&a.get(i)<a.get(j))
+			{
+				aux.add(index,a.get(i));
+				i++;
+			}
+			else
+			{
+				
+				aux.add(index,a.get(j));
+				j++;
+			}
+				
+			
+			
+		}
+		print("aux:"+aux.toString());
+		for(int i=0,j=low;i<aux.size();i++)
+		{
+			a.set(j++, aux.get(i));
+			
+		}
+		
+			
+		
+	}
+	public static void mergeSort(ArrayList<Integer>a,int lo, int hi)
+	{
+		if ( hi == lo)
+			return;
+		
+		mergeSort(a,lo,(lo+hi)/2);
+		mergeSort(a,(lo+hi)/2+1,hi);
+		
+		merge(a,lo,hi);
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stubl
 		ArrayList<Integer> arrayForSort = new ArrayList<Integer>();
-		for(int i=0;i < 50000;i++)
+		for(int i=0;i < 10;i++)
 			arrayForSort.add((int) (Math.random()*100));
 		innerArray = arrayForSort;
-		//printArray();
-		BubbleSort();
+		mergeSort(innerArray,0,innerArray.size()-1);
+		
+		printArray();
+		//BubbleSort();
 		
 		//insertSort();
 		//SelectSort();
