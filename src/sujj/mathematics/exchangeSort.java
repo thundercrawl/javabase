@@ -152,7 +152,7 @@ public class exchangeSort {
 		for(int i=0;i < 10;i++)
 			arrayForSort.add((int) (Math.random()*100));
 		innerArray = arrayForSort;
-		mergeSort(innerArray,0,innerArray.size()-1);
+		//mergeSort(innerArray,0,innerArray.size()-1);
 		
 		printArray();
 		//BubbleSort();
