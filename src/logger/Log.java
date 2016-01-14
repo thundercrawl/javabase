@@ -11,4 +11,9 @@ public class Log {
 		System.out.println(str);
 		
 	}
+	public static void info(boolean str)
+	{
+		
+		System.out.println(str);
+	}
 }

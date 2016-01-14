@@ -9,7 +9,7 @@ public class deadLockSample {
         public String getName() {
             return this.name;
         }
-        public  void bow(Friend bower) {
+        public synchronized void bow(Friend bower) {
         	//synchronized(this)
         	{
         	System.out.format("%s: %s"
