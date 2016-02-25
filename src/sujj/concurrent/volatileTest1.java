@@ -20,7 +20,7 @@ class Novisiable extends Thread
 	}
 }
 public class volatileTest1 {
-public  static  boolean ready;//add volatile here.
+public  static   boolean ready;//add volatile here.
 public  static long number;
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
