@@ -13,8 +13,9 @@ class WorkerRunnable implements Runnable
 	public void run() {
 		// TODO Auto-generated method stub
 		try {
+			
 			String msg = (String)BlockingLinkedQueue.messagesQueue.get();
-			logger.Log.info(msg);
+			logger.Log.info("consumer get the msg as :  " + msg);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -31,7 +32,7 @@ class WorkerGenerateMsg extends Thread
 			{
 				logger.Log.info("Put message");
 				BlockingLinkedQueue.messagesQueue.put("111");
-				Thread.sleep(1000);
+				Thread.sleep(2000);
 				}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -80,43 +81,64 @@ public class BlockingLinkedQueue<E> {
 	public Node<E> lastNode;
 	final ReentrantLock lock = new ReentrantLock() ;
 	//final ReentrantLock putlock = new ReentrantLock();
-	Condition NotEmpty = lock.newCondition();
+	final Condition NotEmpty = lock.newCondition();
 	public BlockingLinkedQueue()
 	{
 		firstNode = new Node<E>(null);
 	}
 	public E get() throws InterruptedException
 	{
+		lock.lock();
+		while(firstNode==null||firstNode.item == null)
+		{
+			logger.Log.info("Queue is empty, wait");
+			NotEmpty.await();
+		}
 		
-		while(firstNode.item == null)
-			this.NotEmpty.await();
-		
-		lock.lockInterruptibly();
 		
 		E rt = (E) firstNode.item;
 		firstNode = firstNode.next;
+		logger.Log.info("Release consumer lock");
 		lock.unlock();
 		return rt;
 	}
 	public void put(E a) throws InterruptedException
 	{
-		lock.lockInterruptibly();
-		
-		if(firstNode.item == null)
-		{
-				firstNode.item =   a;
-				lastNode = new Node<E>(a);
-		}
-		
-		else
-		{
+		lock.lock();
+		try{
+			if(firstNode==null)
+			{
+				firstNode = new Node<E>(a);
+				
+			}
+			else if(firstNode.item == null)
+			{
+					firstNode.item =   a;
+					lastNode = new Node<E>(a);
+			}
 			
-			lastNode.next = new Node<E>(a);
-			lastNode.next.prev = lastNode;
-			lastNode =lastNode.next;
+			else
+			{
+				
+				lastNode.next = new Node<E>(a);
+				lastNode.next.prev = lastNode;
+				lastNode =lastNode.next;
+			}
+			
+			logger.Log.info("singal not empty wait");
 		}
-		NotEmpty.signal();
-		lock.unlock();
+		finally
+		{
+			NotEmpty.signalAll();
+			int ql = lock.getWaitQueueLength(NotEmpty);
+			boolean waiter = lock.hasWaiters(NotEmpty);
+			logger.Log.info("NotEmpty has waiter : "+ waiter);
+			logger.Log.info("wait queue length"+ql);
+			lock.unlock();	
+			
+		}
+		
+		
 		
 		
 		
@@ -127,15 +149,17 @@ public class BlockingLinkedQueue<E> {
 		// TODO Auto-generated method stub
 		WorkerGenerateMsg gm = new WorkerGenerateMsg();
 		ExecutorService ex = Executors.newFixedThreadPool(50);
+		gm.start();
 		
-		int count =20;
+		int count =50;
 		while(count-->0)
 		{
 			
-			ex.submit(new WorkerRunnable());
-		
+		//	ex.submit(new WorkerRunnable());
+		new Thread(new WorkerRunnable()).start();
 		}
-		gm.start();
+		
+		
 		gm.join();
 		
 		//import java.util.concurrent.LinkedBlockingQueue<E>
