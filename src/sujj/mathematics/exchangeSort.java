@@ -29,6 +29,7 @@ public class exchangeSort {
 		
 		
 		
+		
 		System.out.println("quick sort,Time consumed milliseconds:"+(System.currentTimeMillis()-startTime));
 	}
 	public static void BubbleSort()
