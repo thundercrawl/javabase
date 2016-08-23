@@ -9,13 +9,19 @@ class workerMyboy extends Thread
 	}
 	public void run()
 	{
-		try {
-			//logger.Log.info(_threadid+" getMyboy() "+classLock.getMyboy(_threadid));
-			classLock.getInstance().printMsg();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		while(true)
+			{
+				//logger.Log.info(_threadid+" getMyboy() "+classLock.getMyboy(_threadid));
+			try {
+				classLock.cl2_lock();
+				classLock.cl1_lock();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			}
+		//classLock.getInstance().printMsg();
 		
 	}
 }
@@ -27,7 +33,24 @@ public class classLock {
 	{
 		//Thread.sleep(5000);
 	}
+	public static void cl1_lock() throws InterruptedException
+	{
+		synchronized(classLock.class)
+		{
+			logger.Log.info("Clock1 entered and then sleep 10 s");
+			Thread.sleep(10000);
+		}
+	}
 	
+	public static void cl2_lock() throws InterruptedException
+	{
+		synchronized(classLock.class)
+		{
+			logger.Log.info("Clock2 entered and then sleep 10 s");
+			Thread.sleep(10000);
+		}
+		
+	}
 	public static classLock getInstance() throws InterruptedException
 	{
 		if(_c == null)

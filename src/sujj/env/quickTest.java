@@ -62,6 +62,9 @@ public class quickTest {
 		logger.Log.info("it:"+it.get());
 		logger.Log.info("it1:"+it1.get());
 		
+		String file_separator = System.getProperty("file.separator");
+		logger.Log.info("File separator : " +file_separator);;
+		
 
 }
 	
