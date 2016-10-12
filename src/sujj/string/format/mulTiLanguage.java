@@ -13,23 +13,23 @@ import java.util.ResourceBundle;
  */
 public class mulTiLanguage {
 
-	public static void main(String[] args) throws UnsupportedEncodingException {
+	public static void main(final String[] args) throws UnsupportedEncodingException {
 		// TODO Auto-generated method stub
 		final String s1= "Sophie Bélanger";
-		
+
 		logger.Log.info(s1);
-		
-		ResourceBundle bd = ResourceBundle.getBundle("msg",Locale.CHINA);
-	
-		logger.Log.info("locale is : "+Locale.CHINA);
+
+		final ResourceBundle bd = ResourceBundle.getBundle("msg",Locale.CHINA);
+
+		logger.Log.info("locale is : "+bd.getLocale());
 		logger.Log.info(bd.getString("n1"));
-		
-		PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
+
+		final PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
 		out.println(bd.getString("n1"));
 		//out.println("小马哥");
 		out.close();
-		
-		
+
+
 	}
 
 }
