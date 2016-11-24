@@ -21,15 +21,42 @@ public class exchangeSort {
 	{
 		System.out.println(innerArray.toString());
 	}
-	public static void quickSort()
+	private static Integer findPivat(ArrayList<Integer>a,int lw,int hi)
 	{
-		long startTime = System.currentTimeMillis();
 		
-		int length = innerArray.size();
+		int i=lw+1;
+		int j=hi;
+		while(true)
+		{
+			while(a.get(lw)>a.get(i)){i++;continue;}
+			while(a.get(lw)<a.get(j)){j--;continue;}
+			int tmp=a.get(i);
+			logger.Log.info(i+":"+j);
+			a.set(i, a.get(j));
+			a.set(j, tmp);
+			if(i>=j)break;
+			
+		}
+		
+		int tmp = a.get(j);
+		a.set(j, a.get(lw));
+		a.set(lw, tmp);
+		//logger.Log.info(i);
+		return j;
+	}
+	public static void quickSort(ArrayList<Integer> a,int low,int hi)
+	{
+		if(low>=hi) return;
+		
+		
+		int p = findPivat(a,low,hi);
+		
+		quickSort(a,low,p);
+		quickSort(a,p+1,hi);
 		
 		
 		
-		System.out.println("quick sort,Time consumed milliseconds:"+(System.currentTimeMillis()-startTime));
+		//System.out.println("quick sort,Time consumed milliseconds:"+(System.currentTimeMillis()-startTime));
 	}
 	public static void BubbleSort()
 	{
@@ -149,10 +176,13 @@ public class exchangeSort {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stubl
 		ArrayList<Integer> arrayForSort = new ArrayList<Integer>();
-		for(int i=0;i < 10;i++)
+		for(int i=0;i < 3;i++)
 			arrayForSort.add((int) (Math.random()*100));
 		innerArray = arrayForSort;
+		printArray();
 		//mergeSort(innerArray,0,innerArray.size()-1);
+		quickSort(innerArray,0,innerArray.size()-1);
+		
 		
 		printArray();
 		//BubbleSort();

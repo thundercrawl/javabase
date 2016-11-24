@@ -55,9 +55,10 @@ public class GcTestWhen {
 		t1.start();
 		t1.join();
 		
+		logger.Log.info("Call system gc");
 		
 		System.gc();
-		while(true);
+		//while(true);
 	}
 
 }
