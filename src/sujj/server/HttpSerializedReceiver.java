@@ -114,8 +114,9 @@ public class HttpSerializedReceiver {
 	
 		ExecutorService ex = Executors.newFixedThreadPool(50);
 		ex.submit(new HttpReceiverImpl());
-		for(int i=0;i<1;i++)
+		for(int i=0;i<10000;i++)
 		ex.submit(new HttpObjectSenderImpl());
+		
 		
 	}
 

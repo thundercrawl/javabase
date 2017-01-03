@@ -21,30 +21,7 @@ public class exchangeSort {
 	{
 		System.out.println(innerArray.toString());
 	}
-	private static Integer findPivat(ArrayList<Integer>a,int lw,int hi)
-	{
-		
-		int i=lw+1;
-		int j=hi;
-		while(true)
-		{
-			while(a.get(lw)>a.get(i)){i++;continue;}
-			while(a.get(lw)<a.get(j)){j--;continue;}
-			int tmp=a.get(i);
-			logger.Log.info(i+":"+j);
-			a.set(i, a.get(j));
-			a.set(j, tmp);
-			if(i>=j)break;
-			
-		}
-		
-		int tmp = a.get(j);
-		a.set(j, a.get(lw));
-		a.set(lw, tmp);
-		//logger.Log.info(i);
-		return j;
-	}
-	public static void quickSort(ArrayList<Integer> a,int low,int hi)
+	public static void quickSort()
 	{
 		if(low>=hi) return;
 		

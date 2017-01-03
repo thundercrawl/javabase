@@ -169,7 +169,8 @@ public class Recursive {
 		
 		printN(10);
 		// TODO Auto-generated method stub
-		LinkedNode rootNode =createBinaryTree(10);
+		LinkedNode rootNode =
+(10);
 		System.out.println("Recursive------------>");
 		long start = System.currentTimeMillis();
 		searchBinaryTreeRecursiveMiddleFirst(rootNode);
