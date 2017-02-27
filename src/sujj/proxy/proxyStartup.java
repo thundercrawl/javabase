@@ -52,6 +52,11 @@ import java.util.List;
 		
 		
 	}
+	public static void proxyT2()//add the logs entry for each functions call, that help to listen on the //customized class call
+	{
+		//call some customized functions now
+		
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		proxyT1();
