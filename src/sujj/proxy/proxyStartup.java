@@ -69,13 +69,10 @@ class QuickHandler implements InvocationHandler {
 		new TestProxy1().delete();
 		
 	}
-	public static void proxyT3()
-	{
-		
-	}
+	
 	public static void proxyT4()
 	{
-		
+			
 	}
 	public static void main(String[] args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		// TODO Auto-generated method stub
