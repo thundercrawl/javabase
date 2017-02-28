@@ -74,6 +74,10 @@ class QuickHandler implements InvocationHandler {
 	{
 			
 	}
+	
+	//add proxy5
+	public static void proxyT5()
+	{}
 	public static void main(String[] args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		// TODO Auto-generated method stub
 		
