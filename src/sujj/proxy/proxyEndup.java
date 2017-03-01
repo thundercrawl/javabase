@@ -4,6 +4,8 @@ public class proxyEndup {
 	
 	public static void proxyT1()
 	{}
+	
+	public static void proxyT2(){}
 	public proxyEndup() {
 		// TODO Auto-generated constructor stub
 	}

@@ -70,10 +70,7 @@ class QuickHandler implements InvocationHandler {
 		
 	}
 	
-	public static void proxyT4()
-	{
-			
-	}
+	
 	
 	//add proxy5
 	public static void proxyT5()
