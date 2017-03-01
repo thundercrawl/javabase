@@ -72,7 +72,7 @@ class QuickHandler implements InvocationHandler {
 	
 	public static void proxyT4()
 	{
-			
+			//add some garbage codes here
 	}
 	
 	//add proxy5
