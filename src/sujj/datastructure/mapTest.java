@@ -24,6 +24,7 @@ public class mapTest {
 		Map<String,Barrier> mapCon =  Collections.synchronizedMap(new HashMap<String,Barrier>());
 		String s1 = "NewBallence";
 		String s2 = "NewBallence";
+		System.out.println("s1 hash="+s1.hashCode()+" s2 hash="+s2.hashCode());
 		mapCon.put(s1,new Barrier("1"));
 		Object obj = mapCon.put(s2, new Barrier("2"));
 		if (null != obj )
