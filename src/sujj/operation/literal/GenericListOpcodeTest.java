@@ -16,7 +16,7 @@ public class GenericListOpcodeTest {
 	{
 		//list
 		List<Long> objectList = new ArrayList<Long>();
-		objectList.add("");
+		//objectList.add("");
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

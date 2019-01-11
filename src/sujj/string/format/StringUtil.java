@@ -14,10 +14,27 @@ public class StringUtil {
 		
 		
 	}
+	/*
+	 * split empty and single string
+	 */
+	public static void exec_2()
+	{
+		String splitor = ";";
+		
+		String test1 = "admin.nsf;spr.nsf";
+		String test2 = "admin.nsf";
+		String test3 = "";
+		
+		System.out.println(test1.split(splitor).length);
+		System.out.println(test2.split(splitor).length);
+		System.out.println(test3.split(splitor).length);
+		
+		
+	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		exec_1();
+		exec_2();
 	}
 
 }

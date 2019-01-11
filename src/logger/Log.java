@@ -3,7 +3,7 @@ package logger;
 public class Log {
 	public static  void info(String str)
 	{
-		System.out.println(str);
+		System.out.println("[ "+Thread.currentThread().getName()+" ]"+" "+str );
 		
 	}
 	public static  void info(long str)

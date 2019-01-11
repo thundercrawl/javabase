@@ -1,5 +1,7 @@
 package sujj.annotations;
 import java.lang.annotation.*;
+
+import logger.Log;
 import sujj.annotations.Author;
 
 
@@ -34,8 +36,8 @@ interface House {
 		   reviewers = {"Alice", "Bob", "Cindy"}
 		)
 
-@Author(name = "Sujj")
-
+@Author(name = "Zhanghai")
+@Configure(type="Service")
 public class anotationTest {
 	
 	public final String  abc = "";
@@ -43,6 +45,22 @@ public class anotationTest {
 	public void runData()
 	{
 		System.out.println("Run Data test passed!");
+	}
+	
+	public void service()
+	{
+		System.out.println("call service in "+this.getClass().getName());
+		
+		while(true)
+		{
+			try {
+				Thread.sleep(3000);
+				Log.info("call somethig here");
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	/**

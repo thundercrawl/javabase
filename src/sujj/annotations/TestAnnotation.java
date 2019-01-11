@@ -9,7 +9,7 @@ public class TestAnnotation {
 
 	public static void onProcess(String authorName,Class yourClass)
 	{
-		if(authorName.equals("Sujj"))
+		if(authorName.equals("Zhanghai"))
 		{
 			//call the test methods
 			Method[] methods = yourClass.getMethods();
@@ -41,12 +41,42 @@ public class TestAnnotation {
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Class<anotationTest> an = anotationTest.class;
+		Class<anotationTest> cl = anotationTest.class;
 		
-		if(an.isAnnotationPresent(Author.class))
+		if(cl.isAnnotationPresent(Author.class))
 		{
-			System.out.println("Author is :"+an.getAnnotation(Author.class).name());
-			onProcess(an.getAnnotation(Author.class).name(),an);
+			System.out.println("Author is :"+cl.getAnnotation(Author.class).name());
+			onProcess(cl.getAnnotation(Author.class).name(),cl);
+		}
+		
+		if(cl.isAnnotationPresent(Configure.class))
+		{
+			System.out.println("Configure is :"+cl.getAnnotation(Configure.class).type());
+			if(cl.getAnnotation(Configure.class).type().equals( "Service"))
+			{
+				try {
+					
+					cl.getMethod("service").invoke(cl.newInstance());
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (NoSuchMethodException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SecurityException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InstantiationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		
 	}

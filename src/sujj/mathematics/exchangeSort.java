@@ -23,14 +23,6 @@ public class exchangeSort {
 	}
 	public static void quickSort()
 	{
-		if(low>=hi) return;
-		
-		
-		int p = findPivat(a,low,hi);
-		
-		quickSort(a,low,p);
-		quickSort(a,p+1,hi);
-		
 		
 		
 		//System.out.println("quick sort,Time consumed milliseconds:"+(System.currentTimeMillis()-startTime));
@@ -158,7 +150,7 @@ public class exchangeSort {
 		innerArray = arrayForSort;
 		printArray();
 		//mergeSort(innerArray,0,innerArray.size()-1);
-		quickSort(innerArray,0,innerArray.size()-1);
+		//quickSort(innerArray,0,innerArray.size()-1);
 		
 		
 		printArray();

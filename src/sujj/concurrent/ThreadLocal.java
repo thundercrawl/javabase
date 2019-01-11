@@ -24,7 +24,6 @@ public class ThreadLocal {
 		// TODO Auto-generated method stub
 		T1 t1 = new T1();
 		
-		
-	}
+			}
 
 }

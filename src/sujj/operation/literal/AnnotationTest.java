@@ -1,6 +1,6 @@
 package sujj.operation.literal;
 
-import org.junit.Test;
+
 
 public class AnnotationTest {
 
@@ -10,7 +10,7 @@ public class AnnotationTest {
 		
 	}
 	
-	@Test public  void test1() throws Exception{
+	public  void test1() throws Exception{
 		
 		throw new Exception("Failed");
 	};
