@@ -56,7 +56,7 @@ public class TestAnnotation {
 			{
 				try {
 					
-					cl.getMethod("service").invoke(cl.newInstance());
+					cl.getMethod("service").invoke(Configure.class.newInstance());
 				} catch (IllegalAccessException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
