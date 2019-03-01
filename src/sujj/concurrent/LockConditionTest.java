@@ -7,7 +7,7 @@ class LockWorker
 {
 	private  static ArrayList<String> biggems = new ArrayList<String>();
 	private  static int count = 0;
-	private static java.util.concurrent.locks.ReentrantLock lock = new ReentrantLock(); 
+	public static java.util.concurrent.locks.ReentrantLock lock = new ReentrantLock(); 
 	
 	
 	private boolean breakthrough  =false;
@@ -51,12 +51,15 @@ class lock1 implements Runnable
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		int  i= 10000;
-		LockWorker lw = new LockWorker(false);
-		while(i-->0)
-			
-		lw.increase();
+		LockWorker.lock.lock();
+		System.out.println("lock1 in working");
+		try {
+			Thread.sleep(3*1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		LockWorker.lock.unlock();
 	}
 	}
 
@@ -65,15 +68,16 @@ class lock2 implements Runnable
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		int  i= 10000;
-		LockWorker lw = new LockWorker(true);
-		while(i-->0)
-		{
-			
-		lw.increase();
-		}
+		LockWorker.lock.lock();
+		System.out.println("lock2 in working");
+	try {
+		
+		Thread.sleep(3*1000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}
+	LockWorker.lock.unlock();}
 	}
 
 public class LockConditionTest {
